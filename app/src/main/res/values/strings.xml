@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Xbox</string>
+    <string name="voltar">Voltar</string>
+    <string name="proximo">Próximo</string>
 </resources>
