@@ -1,34 +1,35 @@
 package br.com.fiap.edu.xboxone.login
 
+/* Classe que controla a tela de senha */
 class LoginController {
 
+    /* valida se o usuário digitou um email */
     fun temEmail(email: String): Boolean {
-        val vazio = email.isEmpty()
-        if (vazio) {
-            return false
-        }
-
-        return email.contains("@")
+        return email.isNotEmpty() /* isNotEmpty -> valida há conteúdo na variavel senha */
+                && email.contains("@") /* contains -> valida há conteúdo na variavel senha contém o caracter @ */
     }
 
-    fun validateUsername(username: String): Boolean {
-        // é um email
-        if(temEmail(username)) {
+    /* valida se é um usuario valido */
+    fun validateUsername(usuario: String): Boolean {
+        // eh e-mail
+        if (temEmail(usuario)) {     /* valida se o usuário digitou um email */
             return true
         }
 
-        // é um telefone
-        if(username.length == 11 &&
-            username.map { !it.isDigit() }.isEmpty()) {
+        // eh telefone
+        val procuraLetra = usuario.find { !it.isDigit() } // find/isDigit -> procura se tem somente letra
+        if (usuario.length == 11 // length -> tamanho da string é 11
+            && procuraLetra == null) {
             return true
         }
 
-        // é um skype
-        if(username.length >= 5 && username.isNotEmpty()) {
+        // eh skype
+        if (usuario.isNotEmpty() /* isNotEmpty -> valida há conteúdo na variavel usuario */
+            && usuario.length >= 5
+        ) {
             return true
         }
 
         return false
     }
-
 }
