@@ -1,11 +1,23 @@
 package br.com.fiap.edu.xboxone
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import br.com.fiap.edu.xboxone.databinding.ActivitySenhaBinding
 
 class SenhaActivity: AppCompatActivity() {
+
+    companion object {
+        private const val USERNAME_PARAMS = "username"
+
+        fun navegar(packageContext: Context, username: String): Intent {
+            val intent = Intent(packageContext, SenhaActivity::class.java)
+            intent.putExtra(USERNAME_PARAMS, username)
+            return intent
+        }
+    }
 
     private lateinit var binding: ActivitySenhaBinding
 
@@ -19,7 +31,7 @@ class SenhaActivity: AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
 
-        val username = intent.getStringExtra("username")
+        val username = intent.getStringExtra(USERNAME_PARAMS)
         binding.txtUsename.text = username
 
         val senha = binding.edtSenha.text.toString()
