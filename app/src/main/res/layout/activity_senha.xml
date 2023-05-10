@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="36dp"
@@ -49,7 +50,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtUsename" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imvVoltar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -65,7 +66,7 @@
             android:layout_marginTop="16dp"
             tools:text="username"
             android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imvVoltar"
             app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
         <EditText
