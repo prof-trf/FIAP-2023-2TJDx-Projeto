@@ -10,6 +10,8 @@
     <color name="gray14">#FF1D1D1D</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#FF12864B</color>
+    <color name="red">#FFB3280A</color>
+    <color name="light_gray">#FFB3B0B5</color>
     <color name="ebony_clay">#FF313339</color>
     <color name="ic_launcher_background">#FF107C10</color>
 </resources>
