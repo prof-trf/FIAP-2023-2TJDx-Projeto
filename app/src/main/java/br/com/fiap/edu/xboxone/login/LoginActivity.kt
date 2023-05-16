@@ -1,15 +1,18 @@
 package br.com.fiap.edu.xboxone.login
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.widget.addTextChangedListener
 import br.com.fiap.edu.xboxone.R
 import br.com.fiap.edu.xboxone.databinding.ActivityLoginBinding
+import br.com.fiap.edu.xboxone.login.contrato.IValidacaoUsuarioView
 import br.com.fiap.edu.xboxone.senha.SenhaActivity
+import java.lang.Exception
 
 /* Declaração da tela de login */
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), IValidacaoUsuarioView {
 
     /*
         Classe responsável de realizar a leitura do xml de tela
@@ -49,14 +52,7 @@ class LoginActivity : AppCompatActivity() {
         /* setOnClickListener -> metodo usado para capturar o click do botão, no caso proximo */
         binding.btnProximo.setOnClickListener {
             val usuario = binding.edtEmail.text.toString() /* recupera os dados da caixa de texto */
-
-            val validadorUsuario = controller.validarUsuario(usuario) /* metodo para validar o usuario digitado */
-            if (validadorUsuario) {
-                navegarParaTelaSenha(usuario) /* navega para a tela de senha */
-            } else {
-                binding.edtEmail.backgroundTintList =
-                    AppCompatResources.getColorStateList(baseContext, R.color.red)
-            }
+            controller.validateUsername(usuario, this) /* metodo para validar o usuario digitado */
         }
     }
 
@@ -71,8 +67,22 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun navegarParaTelaSenha(usuario: String) {
+    //// IValidacaoUsuarioView implementacao
+    override fun pesquisandoUsuario() {
+        binding.progressBar.visibility = View.VISIBLE /* aparece o progressbar */
+    }
+
+    override fun usuarioLocalizadoNaBaseDeDados(usuario: String) {
+        binding.progressBar.visibility = View.GONE /* esconde o progressbar */
+
         val intent = SenhaActivity.navegar(this@LoginActivity, usuario) /* recupera a referencia para nevegar de tela */
         startActivity(intent) /* realiza o start da tela que iremos navegar */
+    }
+
+    override fun erroNaPesquisaDaBaseDedados(error: Exception) {
+        binding.progressBar.visibility = View.GONE /* esconde o progressbar */
+
+        binding.edtEmail.backgroundTintList =
+            AppCompatResources.getColorStateList(baseContext, R.color.red)
     }
 }
