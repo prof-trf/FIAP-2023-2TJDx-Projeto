@@ -1,14 +1,16 @@
 package br.com.fiap.edu.xboxone.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
-import br.com.fiap.edu.xboxone.SenhaActivity
+import br.com.fiap.edu.xboxone.senha.SenhaActivity
 import br.com.fiap.edu.xboxone.databinding.ActivityLoginBinding
+import br.com.fiap.edu.xboxone.login.contrato.IValidacaoUsuarioView
+import java.lang.Exception
+
 /* Declaração da tela de login */
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), IValidacaoUsuarioView {
 
     /*
         Classe responsável de realizar a leitura do xml de tela
@@ -46,29 +48,39 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-
     private fun setupBotaoVoltarUI() {
         /* setOnClickListener -> metodo usado para capturar o click do botão, no caso voltar */
         binding.btnVoltar.setOnClickListener {
             finish() /* fecha a tela, ou seja, retorna para a tela anterior */
         }
-
     }
 
     private fun setupBotaoProximoUI() {
         /* setOnClickListener -> metodo usado para capturar o click do botão, no caso proximo */
         binding.btnProximo.setOnClickListener {
             val username = binding.edtEmail.text.toString() /* recupera os dados da caixa de texto */
-            if(controller.validateUsername(username)) { /* metodo para validar o usuario digitado */
-                // chamar a proxima activity
-                val intent = SenhaActivity.navegar(this@LoginActivity, username) /* recupera a referencia para nevegar de tela */
-                startActivity(intent) /* realiza o start da tela que iremos navegar */
-
-            } else {
-                binding.txtError.visibility = View.VISIBLE /* coloca o texto de erro visivel */
-                binding.txtError.text = "Username inválido" /* adiciona o texto quando ocorrer o erro */
-            }
+            controller.validateUsername(username, this)
         }
+    }
+
+    // Implementacao da IValidacaoUsuarioView
+    override fun pesquisandoUsuario() {
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    override fun usuarioLocalizado(usuario: String) {
+        binding.progressBar.visibility = View.GONE
+
+        // chamar a proxima activity
+        val intent = SenhaActivity.navegar(this@LoginActivity, usuario) /* recupera a referencia para nevegar de tela */
+        startActivity(intent) /* realiza o start da tela que iremos navegar */
+    }
+
+    override fun usuarioNaoLocalizado(erro: Exception) {
+        binding.progressBar.visibility = View.GONE
+
+        binding.txtError.visibility = View.VISIBLE /* coloca o texto de erro visivel */
+        binding.txtError.text = erro.message /* adiciona o texto quando ocorrer o erro */
     }
 
 }

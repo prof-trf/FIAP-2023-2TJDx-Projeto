@@ -1,7 +1,13 @@
 package br.com.fiap.edu.xboxone.login
 
+import android.annotation.SuppressLint
+import android.os.AsyncTask
+import br.com.fiap.edu.xboxone.login.contrato.IValidacaoUsuarioView
+import java.lang.Exception
+
 /* Classe que controla a tela de senha */
 class LoginController {
+    private val model: LoginModel = LoginModel()
 
     /* valida se o usuário digitou um email */
     fun temEmail(email: String): Boolean {
@@ -10,26 +16,31 @@ class LoginController {
     }
 
     /* valida se é um usuario valido */
-    fun validateUsername(usuario: String): Boolean {
-        // eh e-mail
-        if (temEmail(usuario)) {     /* valida se o usuário digitou um email */
-            return true
+    fun validateUsername(usuario: String, validacaoUsuarioView: IValidacaoUsuarioView) {
+        val task = @SuppressLint("StaticFieldLeak")
+        object: AsyncTask<String, Void, Boolean>(){
+            override fun onPreExecute() {
+                validacaoUsuarioView.pesquisandoUsuario()
+            }
+
+            override fun doInBackground(vararg params: String?): Boolean {
+                val user = params.first() ?: throw Exception("Usuario não preenchido")
+                return model.validateUsername(user)
+            }
+
+            override fun onPostExecute(result: Boolean?) {
+                if(result == true) {
+                    validacaoUsuarioView.usuarioLocalizado(usuario)
+                } else {
+                    validacaoUsuarioView.usuarioNaoLocalizado(Exception("Usuario não localizado"))
+                }
+            }
         }
 
-        // eh telefone
-        val procuraLetra = usuario.find { !it.isDigit() } // find/isDigit -> procura se tem somente letra
-        if (usuario.length == 11 // length -> tamanho da string é 11
-            && procuraLetra == null) {
-            return true
+        if(usuario.isEmpty()) {
+            validacaoUsuarioView.usuarioNaoLocalizado(Exception("Usuario não preenchido"))
+        } else {
+            task.execute(usuario)
         }
-
-        // eh skype
-        if (usuario.isNotEmpty() /* isNotEmpty -> valida há conteúdo na variavel usuario */
-            && usuario.length >= 5
-        ) {
-            return true
-        }
-
-        return false
     }
 }
