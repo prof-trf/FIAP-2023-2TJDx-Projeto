@@ -1,7 +1,10 @@
 package br.com.fiap.edu.xboxone.login
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.widget.addTextChangedListener
@@ -23,9 +26,14 @@ class LoginActivity : AppCompatActivity(), IValidacaoUsuarioView {
     /* Classe controladora da tela de login */
     private val controller = LoginController()
 
+    private var countDownTimer: CountDownTimer? = null
+    private var countDownTimerStated = false
+    private var isPaused = false
+
     /* Primeiro método a ser executado quando montada a tela */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Toast.makeText(this, "onCreate", Toast.LENGTH_LONG).show()
 
         binding = ActivityLoginBinding.inflate(layoutInflater) /* realiza a leitura do xml */
         setContentView(binding.root) /* marca a raiz do xml (layout) como interface para a tela */
@@ -34,10 +42,51 @@ class LoginActivity : AppCompatActivity(), IValidacaoUsuarioView {
     /* Método executado após a tela ser montada (lido o xml) */
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
+        Toast.makeText(this, "onPostCreate", Toast.LENGTH_LONG).show()
 
         setupBotaoVoltarUI() /* configura o componente botão voltar */
         setupBotaoProximoUI() /* configura o componente botão proximo */
         setupCaixaTextoEmailUI() /* configura o componente caixa de texto */
+
+        var context = this@LoginActivity
+
+        countDownTimer = object: CountDownTimer(1000000, 1000) {
+            override fun onTick(p0: Long) {
+                if(isPaused) {
+
+
+                } else {
+                    binding.edtEmail.setText(p0.toString())
+                }
+            }
+
+            override fun onFinish() {
+                Toast.makeText(this@LoginActivity, "terminou", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(this, "onResume", Toast.LENGTH_LONG).show()
+        isPaused = false
+
+        if (!countDownTimerStated) {
+            countDownTimerStated = true
+            countDownTimer?.start()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Toast.makeText(this, "onPause", Toast.LENGTH_LONG).show()
+        isPaused = true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Toast.makeText(this, "onDestroy", Toast.LENGTH_LONG).show()
+        countDownTimer?.cancel()
     }
 
     private fun setupBotaoVoltarUI() {
