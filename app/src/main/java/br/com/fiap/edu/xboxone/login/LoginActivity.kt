@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.widget.addTextChangedListener
@@ -48,13 +47,10 @@ class LoginActivity : AppCompatActivity(), IValidacaoUsuarioView {
         setupBotaoProximoUI() /* configura o componente botão proximo */
         setupCaixaTextoEmailUI() /* configura o componente caixa de texto */
 
-        var context = this@LoginActivity
-
         countDownTimer = object: CountDownTimer(1000000, 1000) {
             override fun onTick(p0: Long) {
                 if(isPaused) {
-
-
+                    Toast.makeText(this@LoginActivity, p0.toString(), Toast.LENGTH_SHORT).show()
                 } else {
                     binding.edtEmail.setText(p0.toString())
                 }
