@@ -77,7 +77,7 @@
             android:text="Não tem uma conta?"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/txtCountDown" />
 
         <TextView
             android:id="@+id/textView4"
@@ -88,7 +88,7 @@
             android:text="Crie uma!"
             android:textColor="#FF3F7EB0"
             app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/txtCountDown" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -128,6 +128,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtCountDown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
