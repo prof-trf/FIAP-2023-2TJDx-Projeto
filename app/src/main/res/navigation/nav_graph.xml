@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="br.com.fiap.edu.xboxone.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_senhaFragment"
+            app:destination="@id/senhaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/senhaFragment"
+        android:name="br.com.fiap.edu.xboxone.senha.SenhaFragment"
+        android:label="SenhaFragment"
+        tools:layout="@layout/fragment_senha">
+        <argument
+            android:name="username"
+            app:argType="string" />
+    </fragment>
+</navigation>

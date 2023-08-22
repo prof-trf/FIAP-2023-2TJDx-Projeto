@@ -9,10 +9,10 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import br.com.fiap.edu.xboxone.R
 import br.com.fiap.edu.xboxone.databinding.FragmentLoginBinding
 import br.com.fiap.edu.xboxone.login.contrato.IValidacaoUsuarioView
-import br.com.fiap.edu.xboxone.senha.SenhaActivity
 import java.lang.Exception
 
 class LoginFragment: Fragment(), IValidacaoUsuarioView {
@@ -57,7 +57,7 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
                 if(isPaused) {
                     Toast.makeText(requireActivity(), (p0/1000).toString(), Toast.LENGTH_SHORT).show()
                 } else {
-                    binding.edtEmail.setText((p0/1000).toString())
+                    //binding.edtEmail.setText((p0/1000).toString())
                 }
             }
 
@@ -124,8 +124,8 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
     override fun usuarioLocalizadoNaBaseDeDados(usuario: String) {
         binding.progressBar.visibility = View.GONE /* esconde o progressbar */
 
-        val intent = SenhaActivity.navegar(requireActivity(), usuario) /* recupera a referencia para nevegar de tela */
-        startActivity(intent) /* realiza o start da tela que iremos navegar */
+        val action = LoginFragmentDirections.actionLoginFragmentToSenhaFragment(usuario) /* recupera a referencia para nevegar de tela */
+        findNavController().navigate(action) /* realiza o start da tela que iremos navegar */
     }
 
     override fun erroNaPesquisaDaBaseDedados(error: Exception) {
