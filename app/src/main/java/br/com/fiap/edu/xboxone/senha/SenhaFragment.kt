@@ -4,22 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import br.com.fiap.edu.xboxone.databinding.FragmentSenhaBinding
 
 /* Declaração da tela de login */
-class SenhaFragment : Fragment {
-    companion object {
-        private const val USERNAME_PARAMS = "username"
-        fun newInstance(usuario: String): Fragment {
-            val senhaFragment = SenhaFragment()
-            senhaFragment.arguments?.putString(USERNAME_PARAMS, usuario) /* adiciona um parametro para tela */
-            return senhaFragment
-        }
-    }
-
-    private constructor()
+class SenhaFragment : Fragment() {
 
     private var _binding: FragmentSenhaBinding? = null
     private val binding get() = _binding!!
@@ -45,7 +36,7 @@ class SenhaFragment : Fragment {
     }
 
     private fun setupTextUsernameUI() {
-        val username = arguments?.getString(USERNAME_PARAMS) /* recupera o parametro enviado da linha 17 */
+        val username = arguments?.getString("usuario") /* recupera o parametro enviado da linha 17 */
         binding.txtUsename.text = username /* marca na tela o texto do parametro recuperado */
     }
 
