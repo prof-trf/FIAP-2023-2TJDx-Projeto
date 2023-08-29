@@ -36,6 +36,13 @@ class SenhaFragment : Fragment() {
         setupCaixaTextoSenhaUI() /* configura o componente caixa de texto */
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        _binding = null
+    }
+
+
     private fun setupTextUsernameUI() {
         val username = arguments?.getString("usuario") /* recupera o parametro enviado da linha 17 */
         binding.txtUsename.text = username /* marca na tela o texto do parametro recuperado */
