@@ -32,7 +32,7 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
     /* Primeiro método a ser executado quando montada a tela */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -47,6 +47,7 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
         setupBotaoProximoUI() /* configura o componente botão proximo */
         setupCaixaTextoEmailUI() /* configura o componente caixa de texto */
 
+        /* Classe que realiza o contador regressivo */
         countDownTimer = object: CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 Log.d("onTick", millisUntilFinished.toString())
@@ -57,17 +58,20 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
         }
     }
 
+    /* Chamada realizada após a tela retornar de background ou seja tornar ativa novamente */
     override fun onResume() {
         super.onResume()
         Toast.makeText(requireActivity(), "onResume", Toast.LENGTH_SHORT).show()
     }
 
+    /* Chamada realizada após a tela ficar e background */
     override fun onPause() {
         super.onPause()
         Toast.makeText(requireActivity(), "onPause", Toast.LENGTH_SHORT).show()
         countDownTimer?.start()
     }
 
+    /* Chamada realizada apos o fechamento da tela */
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
@@ -118,6 +122,7 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
     override fun erroNaPesquisaDaBaseDedados(error: Exception) {
         binding.progressBar.visibility = View.GONE /* esconde o progressbar */
 
+        /* muda a cor da linha da caixa de texto */
         binding.edtEmail.backgroundTintList =
             AppCompatResources.getColorStateList(requireContext(), R.color.red)
     }
