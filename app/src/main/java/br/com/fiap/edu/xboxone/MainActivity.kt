@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.fiap.edu.xboxone.databinding.ActivityMainBinding
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -21,5 +23,15 @@ class MainActivity : AppCompatActivity() {
             )
             startActivity(intent)
         }
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+
+        val imageView = binding.imgIlustracao
+        Glide.with(this)
+            .asGif()
+            .load(R.raw.caozinho)
+            .into(imageView)
     }
 }
