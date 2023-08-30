@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import br.com.fiap.edu.xboxone.databinding.FragmentSenhaBinding
@@ -17,15 +16,17 @@ class SenhaFragment : Fragment() {
 
     private val controller = SenhaController()
 
+    /* Primeiro método a ser executado quando montada a tela */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSenhaBinding.inflate(inflater, container, false) /* realiza a leitura do xml */
         return binding.root
     }
 
+    /* Método executado após a tela ser montada (lido o xml) */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -34,6 +35,13 @@ class SenhaFragment : Fragment() {
         setupBotaoVoltarUI() /* configura o componente button */
         setupCaixaTextoSenhaUI() /* configura o componente caixa de texto */
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        _binding = null
+    }
+
 
     private fun setupTextUsernameUI() {
         val username = arguments?.getString("usuario") /* recupera o parametro enviado da linha 17 */

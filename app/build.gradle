@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'androidx.navigation.safeargs'
+    id 'androidx.navigation.safeargs' // instala o plugin para edição dos argumentos entre fragmentos
 }
 
 android {
@@ -43,8 +43,11 @@ dependencies {
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    // biblioteca para suporte de navegação de jetpack
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
     implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+
+    // Permite que as navegaçoes sejam dinamicas
     implementation "androidx.navigation:navigation-dynamic-features-fragment:2.5.3"
 
     testImplementation 'junit:junit:4.13.2'
