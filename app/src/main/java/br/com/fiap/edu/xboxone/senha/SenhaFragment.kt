@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import br.com.fiap.edu.xboxone.databinding.FragmentSenhaBinding
 
 /* Declaração da tela de login */
@@ -79,7 +80,14 @@ class SenhaFragment : Fragment() {
     }
 
     private fun navegarParaTelaX() {
+        var username = arguments?.getString("usuario")
+        if(username == null) {
+            username = ""
+        }
 
+//        val action = SenhaFragmentDirections.actionSenhaFragmentToPinFragment(username)
+        val action = SenhaFragmentDirections.actionSenhaFragmentToHomeFragment()
+        findNavController().navigate(action)
     }
 
 }

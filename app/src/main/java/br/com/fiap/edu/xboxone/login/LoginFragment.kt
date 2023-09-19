@@ -47,6 +47,8 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
         setupBotaoProximoUI() /* configura o componente botão proximo */
         setupCaixaTextoEmailUI() /* configura o componente caixa de texto */
 
+        setupTextoCrieUmaUI()
+
         /* Classe que realiza o contador regressivo */
         countDownTimer = object: CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -106,9 +108,16 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
         }
     }
 
+    private fun setupTextoCrieUmaUI() {
+        binding.txtCrieUma.setOnClickListener {
+            Toast.makeText(requireActivity(), "Em construção", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     //// IValidacaoUsuarioView implementacao
     override fun pesquisandoUsuario() {
         binding.progressBar.visibility = View.VISIBLE /* aparece o progressbar */
+        binding.txtMessageErro.visibility = View.GONE
     }
 
     override fun usuarioLocalizadoNaBaseDeDados(usuario: String) {
@@ -121,6 +130,9 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
 
     override fun erroNaPesquisaDaBaseDedados(error: Exception) {
         binding.progressBar.visibility = View.GONE /* esconde o progressbar */
+
+        binding.txtMessageErro.visibility = View.VISIBLE
+        binding.txtMessageErro.text = error.message
 
         /* muda a cor da linha da caixa de texto */
         binding.edtEmail.backgroundTintList =

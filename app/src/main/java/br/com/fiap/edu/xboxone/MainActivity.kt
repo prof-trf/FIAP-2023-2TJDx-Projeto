@@ -2,6 +2,7 @@ package br.com.fiap.edu.xboxone
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.fiap.edu.xboxone.databinding.ActivityMainBinding
 import com.bumptech.glide.Glide
@@ -28,10 +29,12 @@ class MainActivity : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
 
-        val imageView = binding.imgIlustracao
-        Glide.with(this)
-            .asGif()
-            .load(R.raw.caozinho)
-            .into(imageView)
+        setupBotaoConfigurarConsoleUI()
+    }
+
+    private fun setupBotaoConfigurarConsoleUI() {
+        binding.btnConfigurar.setOnClickListener {
+            Toast.makeText(this, "Em construção", Toast.LENGTH_SHORT).show()
+        }
     }
 }

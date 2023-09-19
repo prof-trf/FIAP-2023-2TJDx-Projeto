@@ -35,7 +35,7 @@ class LoginController {
                 if(result == true) {
                     validacaoUsuarioView.usuarioLocalizadoNaBaseDeDados(usuario)
                 } else {
-                    validacaoUsuarioView.erroNaPesquisaDaBaseDedados(Exception("usuário não localizado"))
+                    validacaoUsuarioView.erroNaPesquisaDaBaseDedados(Exception("Digite um e-mail ou telefone válido"))
                 }
             }
         }
