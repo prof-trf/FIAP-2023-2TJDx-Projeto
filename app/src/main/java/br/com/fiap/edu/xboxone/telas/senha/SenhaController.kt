@@ -1,4 +1,4 @@
-package br.com.fiap.edu.xboxone.senha
+package br.com.fiap.edu.xboxone.telas.senha
 
 /* Classe que controla a tela de senha */
 class SenhaController {

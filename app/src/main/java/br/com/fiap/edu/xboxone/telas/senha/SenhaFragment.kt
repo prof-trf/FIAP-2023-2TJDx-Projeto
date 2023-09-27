@@ -1,4 +1,4 @@
-package br.com.fiap.edu.xboxone.senha
+package br.com.fiap.edu.xboxone.telas.senha
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -86,7 +86,8 @@ class SenhaFragment : Fragment() {
         }
 
 //        val action = SenhaFragmentDirections.actionSenhaFragmentToPinFragment(username)
-        val action = SenhaFragmentDirections.actionSenhaFragmentToHomeFragment()
+        val action =
+            SenhaFragmentDirections.actionSenhaFragmentToHomeFragment()
         findNavController().navigate(action)
     }
 

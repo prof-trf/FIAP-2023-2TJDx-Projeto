@@ -1,4 +1,4 @@
-package br.com.fiap.edu.xboxone.home
+package br.com.fiap.edu.xboxone.telas.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

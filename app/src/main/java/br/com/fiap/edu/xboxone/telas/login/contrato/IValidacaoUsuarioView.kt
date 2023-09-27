@@ -1,4 +1,4 @@
-package br.com.fiap.edu.xboxone.login.contrato
+package br.com.fiap.edu.xboxone.telas.login.contrato
 
 import java.lang.Exception
 

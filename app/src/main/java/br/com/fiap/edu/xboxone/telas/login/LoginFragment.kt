@@ -1,4 +1,4 @@
-package br.com.fiap.edu.xboxone.login
+package br.com.fiap.edu.xboxone.telas.login
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import br.com.fiap.edu.xboxone.R
 import br.com.fiap.edu.xboxone.databinding.FragmentLoginBinding
-import br.com.fiap.edu.xboxone.login.contrato.IValidacaoUsuarioView
+import br.com.fiap.edu.xboxone.telas.login.contrato.IValidacaoUsuarioView
 import java.lang.Exception
 
 class LoginFragment: Fragment(), IValidacaoUsuarioView {
@@ -124,7 +124,10 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
         binding.progressBar.visibility = View.GONE /* esconde o progressbar */
 
         /* recupera a referencia para nevegar de tela */
-        val directions = LoginFragmentDirections.actionLoginFragmentToSenhaFragment(usuario)
+        val directions =
+            LoginFragmentDirections.actionLoginFragmentToSenhaFragment(
+                usuario
+            )
         findNavController().navigate(directions) /* realiza o start da tela que iremos navegar */
     }
 

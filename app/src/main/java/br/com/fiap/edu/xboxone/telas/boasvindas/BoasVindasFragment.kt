@@ -1,40 +1,31 @@
-package br.com.fiap.edu.xboxone.home
+package br.com.fiap.edu.xboxone.telas.boasvindas
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import br.com.fiap.edu.xboxone.R
-import br.com.fiap.edu.xboxone.databinding.FragmentHomeBinding
+import br.com.fiap.edu.xboxone.databinding.FragmentBoasvindasBinding
 import br.com.fiap.edu.xboxone.databinding.FragmentTemplateBinding
 
-class HomeFragment : Fragment() {
+class BoasVindasFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentBoasvindasBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentBoasvindasBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupListGamePassUI()
-        setupListPopularUI()
-    }
-
-    private fun setupListGamePassUI() {
-        binding.rclGamePass.adapter = GamePassAdapter()
-    }
-
-    private fun setupListPopularUI() {
-        binding.rclPopular.adapter = PopularAdapter()
+//        setupUI()
+        binding.button.text = arguments?.getString("usuario")
     }
 
     override fun onDestroy() {

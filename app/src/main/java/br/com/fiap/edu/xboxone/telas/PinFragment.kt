@@ -1,4 +1,4 @@
-package br.com.fiap.edu.xboxone
+package br.com.fiap.edu.xboxone.telas
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

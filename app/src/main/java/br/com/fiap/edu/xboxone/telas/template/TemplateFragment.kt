@@ -1,23 +1,22 @@
-package br.com.fiap.edu.xboxone.boasvindas
+package br.com.fiap.edu.xboxone.telas.template
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import br.com.fiap.edu.xboxone.databinding.FragmentBoasvindasBinding
 import br.com.fiap.edu.xboxone.databinding.FragmentTemplateBinding
 
-class BoasVindasFragment : Fragment() {
+class TemplateFragment : Fragment() {
 
-    private var _binding: FragmentBoasvindasBinding? = null
+    private var _binding: FragmentTemplateBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentBoasvindasBinding.inflate(inflater, container, false)
+        _binding = FragmentTemplateBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -25,7 +24,6 @@ class BoasVindasFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //        setupUI()
-        binding.button.text = arguments?.getString("usuario")
     }
 
     override fun onDestroy() {

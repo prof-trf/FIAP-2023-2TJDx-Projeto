@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/bancoDadosFragment">
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="br.com.fiap.edu.xboxone.login.LoginFragment"
+        android:name="br.com.fiap.edu.xboxone.telas.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/senhaFragment"
-        android:name="br.com.fiap.edu.xboxone.senha.SenhaFragment"
+        android:name="br.com.fiap.edu.xboxone.telas.senha.SenhaFragment"
         android:label="SenhaFragment"
         tools:layout="@layout/fragment_senha" >
         <argument
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/boasVindasFragment"
-        android:name="br.com.fiap.edu.xboxone.boasvindas.BoasVindasFragment"
+        android:name="br.com.fiap.edu.xboxone.telas.boasvindas.BoasVindasFragment"
         android:label="BoasVindasFragment" >
         <argument
             android:name="usuario"
@@ -42,11 +42,11 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="br.com.fiap.edu.xboxone.home.HomeFragment"
+        android:name="br.com.fiap.edu.xboxone.telas.home.HomeFragment"
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/pinFragment"
-        android:name="br.com.fiap.edu.xboxone.PinFragment"
+        android:name="br.com.fiap.edu.xboxone.telas.PinFragment"
         android:label="fragment_pin"
         tools:layout="@layout/fragment_pin" >
         <action
@@ -56,4 +56,9 @@
             android:name="usuario"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/bancoDadosFragment"
+        android:name="br.com.fiap.edu.xboxone.telas.bancodados.BancoDadosFragment"
+        tools:layout="@layout/fragment_bancodados"
+        android:label="BancoDadosFragment" />
 </navigation>

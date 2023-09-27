@@ -1,12 +1,10 @@
-package br.com.fiap.edu.xboxone
+package br.com.fiap.edu.xboxone.telas
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.fiap.edu.xboxone.databinding.ActivityMainBinding
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

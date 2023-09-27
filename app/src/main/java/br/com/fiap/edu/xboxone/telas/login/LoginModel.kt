@@ -1,4 +1,4 @@
-package br.com.fiap.edu.xboxone.login
+package br.com.fiap.edu.xboxone.telas.login
 
 class LoginModel {
 

@@ -1,9 +1,10 @@
-package br.com.fiap.edu.xboxone
+package br.com.fiap.edu.xboxone.telas
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import br.com.fiap.edu.xboxone.R
 import br.com.fiap.edu.xboxone.databinding.ActivityBaseBinding
 
 class BaseActivity: AppCompatActivity() {

@@ -1,7 +1,7 @@
-package br.com.fiap.edu.xboxone.login
+package br.com.fiap.edu.xboxone.telas.login
 
 import android.os.AsyncTask
-import br.com.fiap.edu.xboxone.login.contrato.IValidacaoUsuarioView
+import br.com.fiap.edu.xboxone.telas.login.contrato.IValidacaoUsuarioView
 import java.lang.Exception
 
 /* Classe que controla a tela de senha */
