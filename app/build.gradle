@@ -4,6 +4,8 @@ plugins {
     id 'androidx.navigation.safeargs' // instala o plugin para edição dos argumentos entre fragmentos
 }
 
+apply plugin: 'kotlin-kapt'
+
 android {
     namespace 'br.com.fiap.edu.xboxone'
     compileSdk 33
@@ -25,11 +27,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 
     viewBinding {
@@ -52,6 +54,10 @@ dependencies {
 
     // Permite que as navegaçoes sejam dinamicas
     implementation "androidx.navigation:navigation-dynamic-features-fragment:2.5.3"
+
+    // Room
+    implementation "androidx.room:room-runtime:2.4.1"
+    kapt "androidx.room:room-compiler:2.4.1"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
