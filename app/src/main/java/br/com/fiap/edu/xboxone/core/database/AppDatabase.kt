@@ -5,14 +5,16 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import br.com.fiap.edu.xboxone.core.database.dao.PeopleDao
+import br.com.fiap.edu.xboxone.core.database.dao.ProductDao
 import br.com.fiap.edu.xboxone.core.database.dao.UserDao
 import br.com.fiap.edu.xboxone.core.database.entities.People
+import br.com.fiap.edu.xboxone.core.database.entities.Product
 import br.com.fiap.edu.xboxone.core.database.entities.User
 
-@Database(entities = [User::class, People::class], version = 2, exportSchema = false)
+@Database(entities = [User::class, Product::class], version = 1, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun getUserDao(): UserDao
-    abstract fun getPeopleDao(): PeopleDao
+    abstract fun getProductDao(): ProductDao
 
     companion object {
         @Volatile
