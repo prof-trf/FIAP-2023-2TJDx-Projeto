@@ -52,8 +52,9 @@ class SenhaFragment : Fragment() {
     private fun setupBotaoEntrarUI() {
         /* setOnClickListener -> metodo usado para capturar o click do botão, no caso entrar */
         binding.btnEntrar.setOnClickListener {
+            val username = arguments?.getString("usuario") ?: ""
             val senha = binding.edtSenha.text.toString() /* recupera os dados da caixa de texto */
-            if (controller.validateSenha(senha)) { /* metodo para validar a senha do usuario */
+            if (controller.validateUser(username, senha)) { /* metodo para validar a senha do usuario */
                 navegarParaTelaX()
             } else {
                 binding.txtError.visibility = View.VISIBLE /* coloca o texto de erro visivel */

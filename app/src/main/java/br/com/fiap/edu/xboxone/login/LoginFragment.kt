@@ -44,10 +44,9 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
         Toast.makeText(requireActivity(), "onPostCreate", Toast.LENGTH_SHORT).show()
 
         setupBotaoVoltarUI() /* configura o componente botão voltar */
+        setupBotaoCriarContaUI() /* configura o componente botão criar conta */
         setupBotaoProximoUI() /* configura o componente botão proximo */
         setupCaixaTextoEmailUI() /* configura o componente caixa de texto */
-
-        setupTextoCrieUmaUI()
 
         /* Classe que realiza o contador regressivo */
         countDownTimer = object: CountDownTimer(10000, 1000) {
@@ -89,6 +88,13 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
 
     }
 
+    private fun setupBotaoCriarContaUI() {
+        binding.txtCrieUma.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToCriarContaFragment()
+            findNavController().navigate(action)
+        }
+    }
+
     private fun setupBotaoProximoUI() {
         /* setOnClickListener -> metodo usado para capturar o click do botão, no caso proximo */
         binding.btnProximo.setOnClickListener {
@@ -105,12 +111,6 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
                 binding.edtEmail.backgroundTintList =
                     AppCompatResources.getColorStateList(requireContext(), R.color.light_gray) /* altera a cor da linha da caixa de texto */
             }
-        }
-    }
-
-    private fun setupTextoCrieUmaUI() {
-        binding.txtCrieUma.setOnClickListener {
-            Toast.makeText(requireActivity(), "Em construção", Toast.LENGTH_SHORT).show()
         }
     }
 

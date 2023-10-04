@@ -38,12 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBotaoConfigurarConsoleUI() {
         binding.btnConfigurar.setOnClickListener {
-            //Toast.makeText(this, "Em construção", Toast.LENGTH_SHORT).show()
-            Handler(Looper.getMainLooper()).post {
-                val id = System.currentTimeMillis().toInt()
-                val user = User(id, "Thiago-${click++}", "Filadelfo")
-                XboxApplication.database.getUserDao().inserirUsuario(user)
-            }
+            Toast.makeText(this, "Em construção", Toast.LENGTH_SHORT).show()
         }
     }
 }

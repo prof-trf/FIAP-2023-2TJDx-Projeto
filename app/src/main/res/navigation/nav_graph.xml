@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_loginFragment_to_senhaFragment"
             app:destination="@id/senhaFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_criarContaFragment"
+            app:destination="@id/criarContaFragment" />
     </fragment>
     <fragment
         android:id="@+id/senhaFragment"
@@ -56,4 +59,8 @@
             android:name="usuario"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/criarContaFragment"
+        android:name="br.com.fiap.edu.xboxone.criacaoconta.CriarContaFragment"
+        android:label="CriarContaFragment" />
 </navigation>

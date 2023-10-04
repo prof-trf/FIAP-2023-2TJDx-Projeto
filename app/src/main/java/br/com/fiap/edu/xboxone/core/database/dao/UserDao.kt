@@ -10,8 +10,11 @@ interface UserDao {
     @Query("SELECT * FROM User")
     fun getUsuarios(): List<User>
 
-    @Query("SELECT * FROM User as u WHERE u.id == :id")
-    fun getUsuario(id: Int): User
+    @Query("SELECT * FROM User as u WHERE u.username == :username")
+    fun hasUsuario(username: String): User
+
+    @Query("SELECT * FROM User as u WHERE u.username == :username AND u.password == :password")
+    fun isValidateUsuario(username: String, password: String): User
 
     @Insert
     fun inserirUsuario(user: User)
