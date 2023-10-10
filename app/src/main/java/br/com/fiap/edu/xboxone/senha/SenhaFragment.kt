@@ -85,8 +85,7 @@ class SenhaFragment : Fragment() {
             username = ""
         }
 
-//        val action = SenhaFragmentDirections.actionSenhaFragmentToPinFragment(username)
-        val action = SenhaFragmentDirections.actionSenhaFragmentToHomeFragment()
+        val action = SenhaFragmentDirections.actionSenhaFragmentToPinFragment(username)
         findNavController().navigate(action)
     }
 
