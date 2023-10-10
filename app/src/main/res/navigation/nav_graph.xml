@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_loginFragment_to_senhaFragment"
             app:destination="@id/senhaFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_crieUmaFragment"
+            app:destination="@id/crieUmaFragment" />
     </fragment>
     <fragment
         android:id="@+id/senhaFragment"
@@ -55,4 +58,9 @@
             android:name="usuario"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/crieUmaFragment"
+        android:name="br.com.fiap.edu.xboxone.crieuma.CrieUmaFragment"
+        tools:layout="@layout/fragment_crieuma"
+        android:label="CrieUmaFragment" />
 </navigation>
