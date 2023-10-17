@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.fiap.edu.xboxone.R
+import br.com.fiap.edu.xboxone.XboxApplication
+import br.com.fiap.edu.xboxone.crieuma.jogos.Jogos
 import br.com.fiap.edu.xboxone.databinding.FragmentHomeBinding
 import br.com.fiap.edu.xboxone.databinding.FragmentTemplateBinding
 
@@ -30,7 +32,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupListGamePassUI() {
-        binding.rclGamePass.adapter = GamePassAdapter()
+        var username = arguments?.getString("usuario") ?: ""
+        val recomendados = XboxApplication.database.getRecomendadoDao().getJogosRecomendados(username)
+
+        binding.rclGamePass.adapter = GamePassAdapter(
+            recomendados.map { Jogos.converteImagem(it.jogo) }.toTypedArray()
+        )
     }
 
     private fun setupListPopularUI() {

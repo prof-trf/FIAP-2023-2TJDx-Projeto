@@ -5,7 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Product(
+data class Recomendado(
     @PrimaryKey val id: Int,
-    @ColumnInfo(name = "name") val name: String
+    @ColumnInfo(name = "username") val username: String,
+    @ColumnInfo(name = "jogo") val jogo: String,
 )
