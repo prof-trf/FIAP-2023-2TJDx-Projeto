@@ -7,6 +7,7 @@ object Jogos {
 
     class Jogo(val id: String, val imagem: Int, var recomendado: Boolean = false)
 
+    // Metodo utilizado para listar as imagens das capas dos Jogos
     fun getJogosRecomendado(): Array<Jogo> {
         return arrayOf(
             Jogo("ageofempires",  R.mipmap.ageofempires),
@@ -27,6 +28,7 @@ object Jogos {
         )
     }
 
+    // Metodo utilizado para recuperar através de um nome qual a referencia da imagem de capa do Jogo
     fun converteImagem(nome: String): Int {
         if(nome == "ageofempires") return  R.mipmap.ageofempires
         if(nome == "ageofempire2") return R.mipmap.ageofempire2

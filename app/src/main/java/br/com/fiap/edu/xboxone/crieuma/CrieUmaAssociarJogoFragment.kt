@@ -38,13 +38,13 @@ class CrieUmaAssociarJogoFragment: Fragment(), CrieUmaContract {
     }
 
     private fun setupUI() {
-        setupJogosUI()
+        setupJogosUI() // monta a listagem dos jogos que tem no APP XBox
         setupButtonVoltarUI()
         setupButtonRegistarUI()
     }
 
     private fun setupJogosUI() {
-        binding.rcvJogos.adapter = JogosAdapter(jogos)
+        binding.rcvJogos.adapter = JogosAdapter(jogos) // Classe responsavel por desenha a lista bem como todos os itens
     }
 
     private fun setupButtonVoltarUI() {
@@ -56,7 +56,7 @@ class CrieUmaAssociarJogoFragment: Fragment(), CrieUmaContract {
     private fun setupButtonRegistarUI() {
         binding.btnRegistrar.setOnClickListener {
             val usuario = arguments?.getString("usuario") ?: ""
-            controller.associarJogos(usuario, jogos, this)
+            controller.associarJogos(usuario, jogos, this) // realiza a inserça dos jogos selecionados
         }
     }
 
