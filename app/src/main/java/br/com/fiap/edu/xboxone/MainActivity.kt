@@ -49,11 +49,11 @@ class MainActivity : AppCompatActivity() {
 //            }
             Handler(Looper.getMainLooper()).post {
                 val id = Random.nextInt(1, 100)
-                val user = User(id, "Thiago-$id", "Filadelfo")
+                val user = User(id, "Thiago-$id", "Filadelfo", "admin", 1)
                 XboxApplication.database.getUserDao().inserirUsuario(user)
 
                 val product = Product(id, "Prod-$id")
-                XboxApplication.database.getProductDao().inserirProduct(product)
+                //XboxApplication.database.getProductDao().inserirProduct(product)
             }
         }
     }
