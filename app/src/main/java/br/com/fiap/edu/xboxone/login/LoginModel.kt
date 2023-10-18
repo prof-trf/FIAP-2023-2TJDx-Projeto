@@ -1,14 +1,14 @@
 package br.com.fiap.edu.xboxone.login
 
+import br.com.fiap.edu.xboxone.XboxApplication
+
 class LoginModel {
+
+    private val database = XboxApplication.database
 
     /* valida se é um usuario valido */
     fun validateUsername(usuario: String): Boolean {
-        val user = usuario.lowercase()
-
-        val temRM = user.contains("rm")
-        val ehOMeuRM = user == "rm1234@fiap.com.br"
-
-        return temRM && ehOMeuRM
+        val user = database.getUserDao().getUsuario(usuario)
+        return user != null
     }
 }

@@ -110,7 +110,8 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
 
     private fun setupTextoCrieUmaUI() {
         binding.txtCrieUma.setOnClickListener {
-            Toast.makeText(requireActivity(), "Em construção", Toast.LENGTH_SHORT).show()
+            val action = LoginFragmentDirections.actionLoginFragmentToCrieUmaFragment()
+            findNavController().navigate(action)
         }
     }
 

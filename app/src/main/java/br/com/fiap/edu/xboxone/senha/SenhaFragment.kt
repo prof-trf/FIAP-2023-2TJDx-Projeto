@@ -52,8 +52,9 @@ class SenhaFragment : Fragment() {
     private fun setupBotaoEntrarUI() {
         /* setOnClickListener -> metodo usado para capturar o click do botão, no caso entrar */
         binding.btnEntrar.setOnClickListener {
+            val usuario = arguments?.getString("usuario") ?: "" /* recupera os dados da caixa de texto */
             val senha = binding.edtSenha.text.toString() /* recupera os dados da caixa de texto */
-            if (controller.validateSenha(senha)) { /* metodo para validar a senha do usuario */
+            if (controller.validateSenha(usuario, senha)) { /* metodo para validar a senha do usuario */
                 navegarParaTelaX()
             } else {
                 binding.txtError.visibility = View.VISIBLE /* coloca o texto de erro visivel */
@@ -85,8 +86,7 @@ class SenhaFragment : Fragment() {
             username = ""
         }
 
-//        val action = SenhaFragmentDirections.actionSenhaFragmentToPinFragment(username)
-        val action = SenhaFragmentDirections.actionSenhaFragmentToHomeFragment()
+        val action = SenhaFragmentDirections.actionSenhaFragmentToPinFragment(username)
         findNavController().navigate(action)
     }
 
