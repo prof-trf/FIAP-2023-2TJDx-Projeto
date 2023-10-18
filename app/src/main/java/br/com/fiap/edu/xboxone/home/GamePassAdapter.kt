@@ -6,18 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.fiap.edu.xboxone.R
 import br.com.fiap.edu.xboxone.databinding.ItemImageHomeBinding
 
-class GamePassAdapter: RecyclerView.Adapter<GamePassAdapter.GamePassViewHolder>() {
+class GamePassAdapter(val images: List<Int>): RecyclerView.Adapter<GamePassAdapter.GamePassViewHolder>() {
 
     class GamePassViewHolder(val binding: ItemImageHomeBinding):
             RecyclerView.ViewHolder(binding.root)
 
-    private val images = arrayListOf(
-            R.mipmap.minecraft,
-            R.mipmap.forza4,
-            R.mipmap.gangbeast,
-            R.mipmap.fortnite,
-            R.mipmap.assassins_creed
-    )
+//    private val images = arrayListOf(
+//            R.mipmap.minecraft,
+//            R.mipmap.forza4,
+//            R.mipmap.gangbeast,
+//            R.mipmap.fortnite,
+//            R.mipmap.assassins_creed
+//    )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GamePassViewHolder {
         // como vou criar os itens

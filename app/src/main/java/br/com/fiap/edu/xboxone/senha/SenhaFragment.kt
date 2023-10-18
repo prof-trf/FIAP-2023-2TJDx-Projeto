@@ -81,12 +81,10 @@ class SenhaFragment : Fragment() {
     }
 
     private fun navegarParaTelaX() {
-        var username = arguments?.getString("usuario")
-        if(username == null) {
-            username = ""
-        }
+        var username = arguments?.getString("usuario") ?: ""
+        //val action = SenhaFragmentDirections.actionSenhaFragmentToPinFragment(username)
 
-        val action = SenhaFragmentDirections.actionSenhaFragmentToPinFragment(username)
+        val action = SenhaFragmentDirections.actionSenhaFragmentToHomeFragment(username)
         findNavController().navigate(action)
     }
 

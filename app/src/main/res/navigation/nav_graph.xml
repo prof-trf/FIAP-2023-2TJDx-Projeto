@@ -26,8 +26,8 @@
             android:name="usuario"
             app:argType="string" />
         <action
-            android:id="@+id/action_senhaFragment_to_pinFragment"
-            app:destination="@id/pinFragment" />
+            android:id="@+id/action_senhaFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/boasVindasFragment"
@@ -37,15 +37,16 @@
         <argument
             android:name="usuario"
             app:argType="string" />
-        <action
-            android:id="@+id/action_boasVindasFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="br.com.fiap.edu.xboxone.home.HomeFragment"
         tools:layout="@layout/fragment_home"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <argument
+            android:name="usuario"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/pinFragment"
         android:name="br.com.fiap.edu.xboxone.PinFragment"
@@ -62,5 +63,18 @@
         android:id="@+id/crieUmaFragment"
         android:name="br.com.fiap.edu.xboxone.crieuma.CrieUmaFragment"
         tools:layout="@layout/fragment_crieuma"
-        android:label="CrieUmaFragment" />
+        android:label="CrieUmaFragment" >
+        <action
+            android:id="@+id/action_crieUmaFragment_to_jogosRecomendadosFragment"
+            app:destination="@id/jogosRecomendadosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/jogosRecomendadosFragment"
+        tools:layout="@layout/fragment_jogos_recomendados"
+        android:name="br.com.fiap.edu.xboxone.crieuma.recomendado.JogosRecomendadosFragment"
+        android:label="JogosRecomendadosFragment" >
+        <argument
+            android:name="usuario"
+            app:argType="string" />
+    </fragment>
 </navigation>

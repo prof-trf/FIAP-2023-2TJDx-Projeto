@@ -5,7 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Product(
+data class GamePass(
     @PrimaryKey val id: Int,
-    @ColumnInfo(name = "name") val name: String
+    @ColumnInfo(name = "username") val username: String,
+    @ColumnInfo(name = "game") val game: String
 )

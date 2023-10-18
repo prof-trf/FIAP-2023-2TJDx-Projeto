@@ -1,18 +1,10 @@
 package br.com.fiap.edu.xboxone
 
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import br.com.fiap.edu.xboxone.core.database.entities.Product
-import br.com.fiap.edu.xboxone.core.database.entities.User
 import br.com.fiap.edu.xboxone.databinding.ActivityMainBinding
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

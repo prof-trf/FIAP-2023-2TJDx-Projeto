@@ -1,67 +1,55 @@
-package br.com.fiap.edu.xboxone.crieuma
+package br.com.fiap.edu.xboxone.crieuma.recomendado
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import br.com.fiap.edu.xboxone.databinding.FragmentCrieumaBinding
+import br.com.fiap.edu.xboxone.crieuma.CrieUmaContract
+import br.com.fiap.edu.xboxone.databinding.FragmentJogosRecomendadosBinding
 
-class CrieUmaFragment: Fragment(), CrieUmaContract {
-    private var _binding: FragmentCrieumaBinding? = null
+class JogosRecomendadosFragment: Fragment(), CrieUmaContract {
+
+    private var _binding: FragmentJogosRecomendadosBinding? = null
     private val binding get() = _binding!!
 
-    private val controller = CrieUmaController()
+    private val controller = JogosRecomendadosController()
+    private val jogos = JogosSuportados.getJogos().map { Recomendados(it.key, it.value) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentCrieumaBinding.inflate(inflater, container, false)
+        _binding = FragmentJogosRecomendadosBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupUI()
+
+        setupListaJogosUI()
+        setupButtonRegistrarUI()
+    }
+
+    private fun setupListaJogosUI() {
+        binding.rcvJogos.adapter = JogosSuportadosAdapter(jogos)
+    }
+
+    private fun setupButtonRegistrarUI() {
+        val username = arguments?.getString("usuario") ?: ""
+
+        binding.btnRegistrar.setOnClickListener {
+            val jogosFiltrado = jogos.filter { it.recomendado }
+            controller.registrarGamePass(username, jogosFiltrado, this)
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    private fun setupUI() {
-        setupButtonVoltarUI()
-        setupButtonJogosUI()
-        setupButtonRegistarUI()
-    }
-
-    private fun setupButtonVoltarUI() {
-        binding.btnVoltar.setOnClickListener {
-            requireActivity().onBackPressed()
-        }
-    }
-
-    private fun setupButtonJogosUI() {
-        binding.btnJogos.setOnClickListener {
-            val usuario = binding.edtEmail.text.toString()
-
-            val action = CrieUmaFragmentDirections.actionCrieUmaFragmentToJogosRecomendadosFragment(usuario)
-            findNavController().navigate(action)
-        }
-    }
-
-    private fun setupButtonRegistarUI() {
-        binding.btnRegistrar.setOnClickListener {
-            val usuario = binding.edtEmail.text.toString()
-            val senha = binding.edtSenha.text.toString()
-
-            controller.registrarUsuario(usuario, senha, this)
-        }
     }
 
     override fun loadingCadastrandoUsuario() {
@@ -74,9 +62,8 @@ class CrieUmaFragment: Fragment(), CrieUmaContract {
         val alert = AlertDialog.Builder(requireActivity())
             .setTitle("Usuario Gravado com Sucesso")
             .setMessage("Um usuario foi inserido com sucesso na base de dados")
-            .setPositiveButton("Ok") { dialog, _ ->
-                //requireActivity().onBackPressed()
-                dialog.dismiss()
+            .setPositiveButton("Ok") { _, _ ->
+                requireActivity().onBackPressed()
             }
             .create()
         alert.show()
@@ -94,4 +81,5 @@ class CrieUmaFragment: Fragment(), CrieUmaContract {
             .create()
         alert.show()
     }
+
 }

@@ -6,14 +6,16 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
+import br.com.fiap.edu.xboxone.core.database.dao.GamePassDao
 import br.com.fiap.edu.xboxone.core.database.dao.UserDao
+import br.com.fiap.edu.xboxone.core.database.entities.GamePass
 import br.com.fiap.edu.xboxone.core.database.entities.User
 
-@Database(entities = [User::class], version = 3, exportSchema = false)
+@Database(entities = [User::class, GamePass::class], version = 4, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun getUserDao(): UserDao
+
+    abstract fun getGamePassDao(): GamePassDao
 
     companion object {
         @Volatile
@@ -27,8 +29,8 @@ abstract class AppDatabase: RoomDatabase() {
                         AppDatabase::class.java,
                         "app_database"
                     )
-//                        .fallbackToDestructiveMigration()
-                        .addMigrations(MIGRATION_2_3, MIGRATION_3_4)
+                        .fallbackToDestructiveMigration()
+//                        .addMigrations(MIGRATION_2_3, MIGRATION_3_4)
                     .allowMainThreadQueries()
                     .build()
                 }
