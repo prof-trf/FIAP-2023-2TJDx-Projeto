@@ -9,7 +9,7 @@ class CrieUmaModel {
     private val database = XboxApplication.database
     fun registrarUsuario(usuario: String, senha: String): Boolean {
         val id = Random.nextInt(0, 9999)
-        val user = User(id, usuario, senha, "user", 1)
+        val user = User(id=id, username = usuario, password = senha, type = "user", active = 1)
         database.getUserDao().inserirUsuario(user)
 
         return true

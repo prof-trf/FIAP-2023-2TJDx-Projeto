@@ -109,6 +109,17 @@
                 app:cornerRadius="0dp" />
 
             <Button
+                android:id="@+id/btnUsuarios"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FFCBCBCB"
+                android:text="Usuários"
+                android:textColor="@color/black"
+                app:cornerRadius="0dp" />
+
+            <Button
                 android:id="@+id/btnProximo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

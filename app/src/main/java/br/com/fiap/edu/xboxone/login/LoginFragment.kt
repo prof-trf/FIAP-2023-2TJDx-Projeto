@@ -49,6 +49,8 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
 
         setupTextoCrieUmaUI()
 
+        setupBotaoUsuariosUI()
+
         /* Classe que realiza o contador regressivo */
         countDownTimer = object: CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -79,6 +81,13 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
         _binding = null
 
         Toast.makeText(requireActivity(), "onDestroy", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setupBotaoUsuariosUI() {
+       binding.btnUsuarios.setOnClickListener {
+           val action = LoginFragmentDirections.actionLoginFragmentToUsuariosFragment()
+           findNavController().navigate(action)
+       }
     }
 
     private fun setupBotaoVoltarUI() {
