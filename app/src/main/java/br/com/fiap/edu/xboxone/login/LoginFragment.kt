@@ -47,6 +47,8 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
         setupBotaoProximoUI() /* configura o componente botão proximo */
         setupCaixaTextoEmailUI() /* configura o componente caixa de texto */
 
+        setupBotaoUsuariosUI()
+
         setupTextoCrieUmaUI()
 
         /* Classe que realiza o contador regressivo */
@@ -57,6 +59,13 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
 
             override fun onFinish() {
             }
+        }
+    }
+
+    private fun setupBotaoUsuariosUI() {
+        binding.btnUsuarios.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToUsuariosFragment()
+            findNavController().navigate(action)
         }
     }
 

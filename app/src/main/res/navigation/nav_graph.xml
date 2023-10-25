@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_loginFragment_to_crieUmaFragment"
             app:destination="@id/crieUmaFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_usuariosFragment"
+            app:destination="@id/usuariosFragment" />
     </fragment>
     <fragment
         android:id="@+id/senhaFragment"
@@ -76,5 +79,22 @@
         <argument
             android:name="usuario"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/usuariosFragment"
+        android:name="br.com.fiap.edu.xboxone.usuarios.UsuariosFragment"
+        android:label="UsuariosFragment" >
+        <action
+            android:id="@+id/action_usuariosFragment_to_formUsuarioFragment"
+            app:destination="@id/formUsuarioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/formUsuarioFragment"
+        android:name="br.com.fiap.edu.xboxone.usuarios.FormUsuarioFragment"
+        android:label="FormUsuarioFragment" >
+        <argument
+            android:name="usuario"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>
