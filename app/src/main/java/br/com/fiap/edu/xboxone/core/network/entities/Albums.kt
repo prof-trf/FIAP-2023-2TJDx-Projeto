@@ -9,7 +9,7 @@ data class AlbumItem(
     @SerializedName("id")
     val id:Int,
 
-    @SerializedName("userid")
+    @SerializedName("userId")
     val userid:Int,
 
     @SerializedName("title")
