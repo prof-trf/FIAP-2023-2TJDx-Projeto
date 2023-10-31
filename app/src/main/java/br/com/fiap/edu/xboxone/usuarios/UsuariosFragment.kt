@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import br.com.fiap.edu.xboxone.XboxApplication
 import br.com.fiap.edu.xboxone.databinding.FragmentUsuariosBinding
+import br.com.fiap.edu.xboxone.usuarios.contract.ListaUsuarioContract
 
 class UsuariosFragment: Fragment(), ItemUsuarioListener {
     private var _binding: FragmentUsuariosBinding? = null
     private val binding get() = _binding!!
+
+    private val controller = UsuariosController()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,15 +25,15 @@ class UsuariosFragment: Fragment(), ItemUsuarioListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupListaUsuariosUI()
     }
 
     private fun setupListaUsuariosUI() {
-        val usuarios = XboxApplication.database.getUserDao().getUsuarios()
-        val users = usuarios.map { ItemUsuario(it.username, it.active == 1) }
-
-        binding.recyclerView.adapter = UsuariosAdapter(users, this)
+        controller.getUsuarios(object: ListaUsuarioContract {
+            override fun sucesso(users: List<ItemUsuario>) {
+                binding.recyclerView.adapter = UsuariosAdapter(users, this@UsuariosFragment)
+            }
+        })
     }
 
     override fun onDestroy() {

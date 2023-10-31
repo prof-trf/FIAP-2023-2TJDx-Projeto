@@ -31,7 +31,7 @@ class UsuariosAdapter(
         val usuario = usuarios[position]
 
         holder.binding.txtEmail.text = usuario.email
-        holder.binding.txtAcesso.text = if (usuario.active) "ativo" else "desativado"
+        holder.binding.txtAcesso.text = usuario.active
 
         holder.binding.root.setOnClickListener {
             itemUsuarioListener.usuarioSelecionado(usuario.email)
