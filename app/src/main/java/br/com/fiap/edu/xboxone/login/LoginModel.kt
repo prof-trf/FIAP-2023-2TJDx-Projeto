@@ -1,6 +1,7 @@
 package br.com.fiap.edu.xboxone.login
 
 import br.com.fiap.edu.xboxone.XboxApplication
+import br.com.fiap.edu.xboxone.core.network.JsonPlaceholderAPI
 
 class LoginModel {
 
