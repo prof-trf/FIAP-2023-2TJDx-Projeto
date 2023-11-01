@@ -3,7 +3,9 @@ package br.com.fiap.edu.xboxone.core.network.dao
 import br.com.fiap.edu.xboxone.core.network.entities.AlbumItem
 import br.com.fiap.edu.xboxone.core.network.entities.Albums
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import java.lang.NumberFormatException
 
 // Classe responsavel pelo acesso ao recurso da API
