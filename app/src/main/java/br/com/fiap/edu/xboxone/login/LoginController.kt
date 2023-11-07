@@ -1,8 +1,12 @@
 package br.com.fiap.edu.xboxone.login
 
 import android.os.AsyncTask
+import android.os.Build
+import androidx.annotation.RequiresApi
+import br.com.fiap.edu.xboxone.login.contrato.IUsuarioController
 import br.com.fiap.edu.xboxone.login.contrato.IValidacaoUsuarioView
 import java.lang.Exception
+import java.util.concurrent.CompletableFuture
 
 /* Classe que controla a tela de senha */
 class LoginController {
@@ -26,9 +30,22 @@ class LoginController {
                 validacaoUsuarioView.pesquisandoUsuario()
             }
 
+            @RequiresApi(Build.VERSION_CODES.N)
             override fun doInBackground(vararg params: String?): Boolean {
                 val usuario = params.first() ?: throw Exception("usuário não informado")
-                return model.validateUsername(usuario)
+                val future = CompletableFuture<Boolean>()
+
+                model.validateUsername(usuario, object: IUsuarioController {
+                    override fun usuarioLocalizado() {
+                        future.complete(true)
+                    }
+
+                    override fun usuarioNaoLocalizado() {
+                        future.complete(false)
+                    }
+                })
+
+                return future.get()
             }
 
             override fun onPostExecute(result: Boolean?) {

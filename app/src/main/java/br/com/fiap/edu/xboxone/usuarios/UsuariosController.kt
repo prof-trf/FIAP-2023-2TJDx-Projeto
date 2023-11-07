@@ -1,11 +1,12 @@
 package br.com.fiap.edu.xboxone.usuarios
 
+import android.util.Log
 import br.com.fiap.edu.xboxone.XboxApplication
 import br.com.fiap.edu.xboxone.core.network.JsonPlaceholderAPI
-import br.com.fiap.edu.xboxone.core.network.entities.AlbumItem
-import br.com.fiap.edu.xboxone.core.network.entities.Albums
-import br.com.fiap.edu.xboxone.core.network.entities.Comments
-import br.com.fiap.edu.xboxone.core.network.entities.Users
+import br.com.fiap.edu.xboxone.core.network.XBoxAPI
+import br.com.fiap.edu.xboxone.core.network.entities.jsonplaceholder.AlbumItem
+import br.com.fiap.edu.xboxone.core.network.entities.jsonplaceholder.Comments
+import br.com.fiap.edu.xboxone.core.network.entities.jsonplaceholder.Users
 import br.com.fiap.edu.xboxone.usuarios.contract.ListaUsuarioContract
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,7 +18,8 @@ class UsuariosController {
         //getUsuariosDatabase(listaUsuarioContract)
         //getUsuariosRemoto(listaUsuarioContract)
 //        getUsuariosRemoto2(listaUsuarioContract)
-        getUsuariosRemoto3(listaUsuarioContract)
+//        getUsuariosRemoto3(listaUsuarioContract)
+        getUsuariosRemoto4(listaUsuarioContract)
     }
 
     // Busca o usuario na base de dados
@@ -117,6 +119,32 @@ class UsuariosController {
                 override fun onFailure(call: Call<ArrayList<Users>>, t: Throwable) {
                 }
             })
+    }
+
+    private fun getUsuariosRemoto4(listaUsuarioContract: ListaUsuarioContract) {
+        val usersDao = XBoxAPI.usersDao
+        usersDao.getUsers().enqueue(object:
+            Callback<ArrayList<br.com.fiap.edu.xboxone.core.network.entities.xbox.Users>> {
+            override fun onResponse(
+                call: Call<ArrayList<br.com.fiap.edu.xboxone.core.network.entities.xbox.Users>>,
+                response: Response<ArrayList<br.com.fiap.edu.xboxone.core.network.entities.xbox.Users>>
+            ) {
+                val body = response.body()
+                listaUsuarioContract.sucesso(
+                    body?.map { ItemUsuario(it.email, it.id.toString()) }
+                        ?: arrayListOf()
+                )
+            }
+
+            override fun onFailure(
+                call: Call<ArrayList<br.com.fiap.edu.xboxone.core.network.entities.xbox.Users>>,
+                t: Throwable
+            ) {
+                println(t)
+                Log.e("ixi", "deu erro...", t)
+            }
+
+        })
     }
 
 }

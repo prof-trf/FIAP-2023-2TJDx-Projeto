@@ -19,7 +19,7 @@ class CrieUmaController {
                 return try {
                     val usuario = params[0] ?: throw Exception("usuário não informado")
                     val senha = params[1] ?: throw Exception("senha não informada")
-                    model.registrarUsuario(usuario, senha)
+                    model.registrarUsuarioRemoto(usuario, senha)
                 } catch (e: Exception) {
                     exception = e
                     false

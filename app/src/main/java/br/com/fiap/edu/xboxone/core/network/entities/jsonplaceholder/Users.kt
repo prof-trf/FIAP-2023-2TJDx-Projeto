@@ -1,4 +1,4 @@
-package br.com.fiap.edu.xboxone.core.network.entities
+package br.com.fiap.edu.xboxone.core.network.entities.jsonplaceholder
 
 data class Users(
     val id: Int,
