@@ -2,10 +2,11 @@ package br.com.fiap.edu.xboxone.usuarios
 
 import br.com.fiap.edu.xboxone.XboxApplication
 import br.com.fiap.edu.xboxone.core.network.JsonPlaceholderAPI
-import br.com.fiap.edu.xboxone.core.network.entities.AlbumItem
-import br.com.fiap.edu.xboxone.core.network.entities.Albums
-import br.com.fiap.edu.xboxone.core.network.entities.Comments
-import br.com.fiap.edu.xboxone.core.network.entities.Users
+import br.com.fiap.edu.xboxone.core.network.XboxAPI
+import br.com.fiap.edu.xboxone.core.network.entities.jsonplaceholder.AlbumItem
+import br.com.fiap.edu.xboxone.core.network.entities.jsonplaceholder.Comments
+import br.com.fiap.edu.xboxone.core.network.entities.jsonplaceholder.Users
+import br.com.fiap.edu.xboxone.core.network.entities.xbox.User
 import br.com.fiap.edu.xboxone.usuarios.contract.ListaUsuarioContract
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,7 +18,9 @@ class UsuariosController {
         //getUsuariosDatabase(listaUsuarioContract)
         //getUsuariosRemoto(listaUsuarioContract)
 //        getUsuariosRemoto2(listaUsuarioContract)
-        getUsuariosRemoto3(listaUsuarioContract)
+//        getUsuariosRemoto3(listaUsuarioContract)
+//        getUsuariosRemoto3(listaUsuarioContract)
+        getUsuariosRemoto4(listaUsuarioContract)
     }
 
     // Busca o usuario na base de dados
@@ -117,6 +120,30 @@ class UsuariosController {
                 override fun onFailure(call: Call<ArrayList<Users>>, t: Throwable) {
                 }
             })
+    }
+
+    private fun getUsuariosRemoto4(listaUsuarioContract: ListaUsuarioContract) {
+        // Instancia da classe que acessa os dados
+        val usersDao = XboxAPI.usersDao
+        usersDao.getAllUsers().enqueue(object: Callback<ArrayList<User>>{
+            override fun onResponse(
+                call: Call<ArrayList<User>>,
+                response: Response<ArrayList<User>>
+            ) {
+                if(response.code() in 200..299) {
+                    val body = response.body() //Json convertido em objeto
+
+                    //Notificando a tela que houve sucesso na chamada e passando a lista
+                    listaUsuarioContract.sucesso(
+                        body?.map { ItemUsuario(it.email, it.id.toString()) }
+                            ?: arrayListOf()
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<User>>, t: Throwable) {
+            }
+        })
     }
 
 }

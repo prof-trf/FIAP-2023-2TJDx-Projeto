@@ -1,8 +1,8 @@
 package br.com.fiap.edu.xboxone.core.network
 
-import br.com.fiap.edu.xboxone.core.network.dao.AlbumDao
-import br.com.fiap.edu.xboxone.core.network.dao.CommentsDao
-import br.com.fiap.edu.xboxone.core.network.dao.UsersDao
+import br.com.fiap.edu.xboxone.core.network.dao.jsonplaceholder.AlbumDao
+import br.com.fiap.edu.xboxone.core.network.dao.jsonplaceholder.CommentsDao
+import br.com.fiap.edu.xboxone.core.network.dao.jsonplaceholder.UsersDao
 
 //Criação do conector (quem fará a requisição)
 private val retrofit =
