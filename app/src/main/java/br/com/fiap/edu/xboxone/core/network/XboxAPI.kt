@@ -1,5 +1,6 @@
 package br.com.fiap.edu.xboxone.core.network
 
+import br.com.fiap.edu.xboxone.core.network.dao.xbox.AuthDao
 import br.com.fiap.edu.xboxone.core.network.dao.xbox.UsersDao
 
 //Criação do conector (quem fará a requisição)
@@ -11,4 +12,5 @@ private val retrofit =
 object XboxAPI {
 
     val usersDao: UsersDao by lazy { retrofit.create(UsersDao::class.java) }
+    val authDao: AuthDao by lazy { retrofit.create(AuthDao::class.java) }
 }
