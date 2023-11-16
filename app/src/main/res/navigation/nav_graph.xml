@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_loginFragment_to_usuariosFragment"
             app:destination="@id/usuariosFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_CPHomeFragment"
+            app:destination="@id/CPHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/senhaFragment"
@@ -97,4 +100,26 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/CPHomeFragment"
+        android:name="br.com.fiap.edu.xboxone.cp.CPHomeFragment"
+        tools:layout="@layout/fragment_cp_home"
+        android:label="CPHomeFragment" >
+        <action
+            android:id="@+id/action_CPHomeFragment_to_numExtensoFragment"
+            app:destination="@id/numExtensoFragment" />
+        <action
+            android:id="@+id/action_CPHomeFragment_to_feriadosFragment"
+            app:destination="@id/feriadosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/feriadosFragment"
+        tools:layout="@layout/fragment_cp_feriados"
+        android:name="br.com.fiap.edu.xboxone.cp.feriados.FeriadosFragment"
+        android:label="FeriadosFragment" />
+    <fragment
+        android:id="@+id/numExtensoFragment"
+        tools:layout="@layout/fragment_cp_numextenso"
+        android:name="br.com.fiap.edu.xboxone.cp.numextenso.NumExtensoFragment"
+        android:label="NumExtensoFragment" />
 </navigation>

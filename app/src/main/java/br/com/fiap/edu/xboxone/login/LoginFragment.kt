@@ -48,7 +48,7 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
         setupCaixaTextoEmailUI() /* configura o componente caixa de texto */
 
         setupBotaoUsuariosUI()
-
+        setupBotaoCP3UI()
         setupTextoCrieUmaUI()
 
         /* Classe que realiza o contador regressivo */
@@ -59,6 +59,13 @@ class LoginFragment: Fragment(), IValidacaoUsuarioView {
 
             override fun onFinish() {
             }
+        }
+    }
+
+    private fun setupBotaoCP3UI() {
+        binding.btnCP.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToCPHomeFragment()
+            findNavController().navigate(action)
         }
     }
 
